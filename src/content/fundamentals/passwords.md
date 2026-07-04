@@ -1,7 +1,8 @@
 ---
-title: "Passwords"
+title: Passwords
 order: 1
-summary: "Still the default authenticator for most products — and the one most likely to be misconfigured."
+summary: AAAAAStill the default authenticator for most products — and the one
+  most likely to be misconfigured.
 ---
 
 Passwords remain the baseline authenticator across the web, and for many products they will stay that way for years. The job is not to eliminate them overnight — it's to stop them from being the weakest, most inconsistent part of the login experience.
