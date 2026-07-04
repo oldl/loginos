@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: oldl/loginos
+  name: git-gateway
   branch: main
 
 local_backend: true

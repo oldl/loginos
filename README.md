@@ -9,8 +9,8 @@ Live at **loginos.blog**.
 - [Astro](https://astro.build) — static site generation
 - [Tailwind CSS](https://tailwindcss.com) — utility-first styling
 - Astro Content Collections (Markdown/YAML) — typed content
-- [Decap CMS](https://decapcms.org) — GitHub-based content editing at `/admin`
-- Netlify — hosting and deploys
+- [Decap CMS](https://decapcms.org) — editorial content editing at `/admin`
+- Netlify — hosting, Identity and Git Gateway
 
 ## Getting started
 
@@ -68,10 +68,12 @@ Collections editable via CMS: Fundamentals, Patterns, Benchmarks, Case Studies, 
 
 1. Push this repo to GitHub.
 2. In Netlify: **Add new site → Import an existing project**, pick the repo. Build command `npm run build`, publish directory `dist` (already set in `netlify.toml`).
-3. Decap CMS is already configured for the GitHub repo `oldl/loginos` in `public/admin/config.yml`.
-4. For Decap's `github` backend, set up a GitHub OAuth application or OAuth proxy that Decap can use in production.
-5. In the OAuth app settings, add your deployed admin URL, for example `https://loginos.blog/admin/`, as an allowed callback/origin as required by your auth setup.
-6. Open `https://<your-site>/admin` and authenticate with GitHub to edit content.
+3. In Netlify, enable **Identity** for the site.
+4. Set **Registration preferences** to `Invite only`.
+5. Under **External providers**, enable `GitHub`.
+6. Enable **Git Gateway**.
+7. Invite yourself as a user from the Netlify Identity panel and accept the invitation email.
+8. Open `https://<your-site>/admin` and authenticate to edit content.
 
 ## CMS authentication
 
@@ -79,18 +81,11 @@ This project uses:
 
 - Astro for the site
 - Decap CMS for editorial editing
-- GitHub as the content backend
+- GitHub as the Git repository
 - Netlify for hosting
+- Netlify Identity + Git Gateway for CMS authentication and commits
 
-It does **not** use Netlify Identity or Git Gateway.
-
-That means `/admin` must be connected to GitHub authentication directly via a Decap-compatible OAuth flow. The exact setup can be:
-
-- a small OAuth proxy you host yourself
-- a serverless OAuth helper
-- another Decap-compatible GitHub auth bridge
-
-Once that OAuth flow is in place, Decap will commit content changes directly into `oldl/loginos`.
+That means editors sign in through Netlify, and Decap writes changes back to the connected GitHub repository through Git Gateway.
 
 ## Content schema
 
