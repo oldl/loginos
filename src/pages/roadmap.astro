@@ -1,0 +1,43 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import RoadmapColumn from '../components/RoadmapColumn.astro';
+
+const roadmap = await getEntry('roadmap', 'roadmap');
+const { now, next, later } = roadmap!.data;
+---
+
+<BaseLayout title="Roadmap" description="What LoginOS's recommendations mean for near-term, mid-term and long-term authentication work.">
+  <Header />
+  <section class="mx-auto max-w-content px-6 py-16 lg:px-8 lg:py-20">
+    <SectionHeader
+      eyebrow="What's next"
+      title="Roadmap"
+      description="A staged path from immediate fixes to a passwordless-first future — each stage building on the one before it."
+    />
+    <div class="mt-12 grid gap-6 lg:grid-cols-3">
+      <RoadmapColumn
+        heading="Now"
+        description="Immediate, low-risk fixes that remove the sharpest friction points."
+        items={now}
+        tone="active"
+      />
+      <RoadmapColumn
+        heading="Next"
+        description="Passkey groundwork and the login-methods consolidation it depends on."
+        items={next}
+        tone="next"
+      />
+      <RoadmapColumn
+        heading="Later"
+        description="A contextual, passwordless-first experience once adoption is proven."
+        items={later}
+        tone="later"
+      />
+    </div>
+  </section>
+  <Footer />
+</BaseLayout>

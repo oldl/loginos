@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import Card from '../../components/Card.astro';
+
+const items = (await getCollection('case-studies')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title="Case Studies" description="Real-world authentication case studies, starting with Partenamut's member login ecosystem.">
+  <Header />
+  <section class="mx-auto max-w-content px-6 py-16 lg:px-8 lg:py-20">
+    <SectionHeader
+      eyebrow="Applied"
+      title="Case Studies"
+      description="How the fundamentals and patterns in this playbook apply to a real, fragmented identity landscape."
+    />
+    <div class="mt-12 grid gap-5 sm:grid-cols-2">
+      {items.map((item) => (
+        <Card title={item.data.title} description={item.data.summary} href={`/case-studies/${item.slug}`} />
+      ))}
+    </div>
+  </section>
+  <Footer />
+</BaseLayout>

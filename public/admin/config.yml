@@ -1,0 +1,122 @@
+backend:
+  name: github
+  repo: oldl/loginos
+  branch: main
+
+local_backend: true
+
+site_url: https://loginos.blog
+display_url: https://loginos.blog
+logo_url: /favicon.svg
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+publish_mode: editorial_workflow
+
+collections:
+  - name: "fundamentals"
+    label: "Fundamentals"
+    folder: "src/content/fundamentals"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Order", name: "order", widget: "number", value_type: "int" }
+      - { label: "Summary", name: "summary", widget: "text" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "patterns"
+    label: "Patterns"
+    folder: "src/content/patterns"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Order", name: "order", widget: "number", value_type: "int" }
+      - { label: "Tags", name: "tags", widget: "list", default: [] }
+      - { label: "Problem", name: "problem", widget: "text" }
+      - { label: "Recommendation", name: "recommendation", widget: "text" }
+      - { label: "UX impact", name: "uxImpact", widget: "text" }
+      - { label: "Security impact", name: "securityImpact", widget: "text" }
+      - { label: "Implementation notes", name: "implementationNotes", widget: "text" }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  - name: "benchmarks"
+    label: "Benchmarks"
+    folder: "src/content/benchmarks"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Company", name: "company", widget: "string" }
+      - { label: "Order", name: "order", widget: "number", value_type: "int" }
+      - { label: "What they do well", name: "whatTheyDoWell", widget: "text" }
+      - { label: "Why it works", name: "whyItWorks", widget: "text" }
+      - { label: "What to learn", name: "whatToLearn", widget: "text" }
+      - { label: "UX pattern extracted", name: "uxPattern", widget: "string" }
+      - label: "Scores"
+        name: "scores"
+        widget: "object"
+        fields:
+          - { label: "Friction reduction (0-5)", name: "frictionReduction", widget: "number", value_type: "int", min: 0, max: 5 }
+          - { label: "Trust signaling (0-5)", name: "trustSignaling", widget: "number", value_type: "int", min: 0, max: 5 }
+          - { label: "Recovery resilience (0-5)", name: "recoveryResilience", widget: "number", value_type: "int", min: 0, max: 5 }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  - name: "case-studies"
+    label: "Case Studies"
+    folder: "src/content/case-studies"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Organization", name: "org", widget: "string" }
+      - { label: "Summary", name: "summary", widget: "text" }
+      - { label: "Order", name: "order", widget: "number", value_type: "int", default: 0 }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "decision-log"
+    label: "Decision Log"
+    folder: "src/content/decisions"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "ADR ID", name: "id", widget: "string", hint: "e.g. ADR-005" }
+      - { label: "Title", name: "title", widget: "string" }
+      - label: "Status"
+        name: "status"
+        widget: "select"
+        options: ["Proposed", "Accepted", "Rejected", "Superseded"]
+      - { label: "Recommendation", name: "recommendation", widget: "text" }
+      - { label: "Context", name: "context", widget: "text" }
+      - label: "Options considered"
+        name: "options"
+        widget: "list"
+        fields:
+          - { label: "Name", name: "name", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+      - { label: "Rationale", name: "rationale", widget: "text" }
+      - { label: "Risks", name: "risks", widget: "list", field: { label: "Risk", name: "risk", widget: "string" } }
+      - { label: "Order", name: "order", widget: "number", value_type: "int" }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  - name: "roadmap"
+    label: "Roadmap"
+    files:
+      - name: "roadmap"
+        label: "Roadmap"
+        file: "src/content/roadmap/roadmap.yaml"
+        fields:
+          - { label: "Now", name: "now", widget: "list", field: { label: "Item", name: "item", widget: "string" } }
+          - { label: "Next", name: "next", widget: "list", field: { label: "Item", name: "item", widget: "string" } }
+          - { label: "Later", name: "later", widget: "list", field: { label: "Item", name: "item", widget: "string" } }

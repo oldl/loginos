@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import PatternCard from '../components/PatternCard.astro';
+
+const items = (await getCollection('patterns')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title="Patterns" description="Best-practice login and authentication UX patterns, with problem, recommendation, UX impact, security impact and implementation notes.">
+  <Header />
+  <section class="mx-auto max-w-content px-6 py-16 lg:px-8 lg:py-20">
+    <SectionHeader
+      eyebrow="Best practices"
+      title="Patterns"
+      description="Nine recurring authentication patterns, each with the reasoning and tradeoffs behind it — not just the recommendation."
+    />
+    <div class="mt-12 flex flex-col gap-6">
+      {items.map((item) => (
+        <PatternCard
+          index={item.data.order}
+          title={item.data.title}
+          href={`/patterns/${item.slug}`}
+          tags={item.data.tags}
+          problem={item.data.problem}
+          recommendation={item.data.recommendation}
+          uxImpact={item.data.uxImpact}
+          securityImpact={item.data.securityImpact}
+          implementationNotes={item.data.implementationNotes}
+        />
+      ))}
+    </div>
+  </section>
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+
+const audiences = [
+  { title: 'Product', body: 'Frame login and recovery decisions as product strategy, not a backlog afterthought.', href: '/decision-log' },
+  { title: 'UX / UI Design', body: 'Ready-to-use interaction patterns for identifier-first login, errors, and enrollment.', href: '/patterns' },
+  { title: 'Security', body: 'Understand where passkeys, MFA and identity proofing actually reduce risk.', href: '/fundamentals' },
+  { title: 'Architecture', body: 'See how competitors structure login methods, sessions and fallback paths.', href: '/benchmarks' },
+];
+---
+
+<BaseLayout title="LoginOS — Where authentication becomes product strategy">
+  <Header />
+
+  <Hero
+    eyebrow="An editorial authentication playbook"
+    title="LoginOS"
+    subtitle="Where authentication becomes product strategy."
+  >
+    <p class="mt-8 max-w-2xl text-[16.5px] leading-relaxed text-ink-soft lg:text-[17.5px]">
+      Login is not just a technical screen. It is the front door of digital trust, member access and product adoption.
+    </p>
+    <div class="mt-9 flex flex-wrap gap-3">
+      <a href="/patterns" class="rounded-full bg-ink px-5 py-3 text-[14.5px] font-medium text-paper transition-colors hover:bg-accent">
+        Explore best practices
+      </a>
+      <a href="/decision-log" class="rounded-full border border-line bg-white px-5 py-3 text-[14.5px] font-medium text-ink transition-colors hover:border-ink">
+        View decision log
+      </a>
+      <a href="/case-studies/partenamut" class="inline-flex items-center gap-1.5 px-2 py-3 text-[14.5px] font-medium text-accent">
+        See Partenamut case study &rarr;
+      </a>
+    </div>
+  </Hero>
+
+  <section class="mx-auto max-w-content border-b border-line px-6 py-20 lg:px-8">
+    <SectionHeader eyebrow="Why it matters" title="Why authentication matters" />
+    <div class="mt-10 grid gap-8 lg:grid-cols-3">
+      <div>
+        <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-faint">Trust</p>
+        <p class="mt-3 text-[15px] leading-relaxed text-ink-soft">Login is the first product interaction a returning user has. Every point of confusion there colors their expectation of everything downstream.</p>
+      </div>
+      <div>
+        <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-faint">Adoption</p>
+        <p class="mt-3 text-[15px] leading-relaxed text-ink-soft">Members who can't get back into their account don't file a bug report — they quietly stop using the product.</p>
+      </div>
+      <div>
+        <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-faint">Risk</p>
+        <p class="mt-3 text-[15px] leading-relaxed text-ink-soft">Weak recovery and inconsistent password rules are where account takeover actually happens — far more than at the login form itself.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-content border-b border-line px-6 py-20 lg:px-8">
+    <SectionHeader eyebrow="The shift" title="From friction to trust" description="Most login flows optimize for the wrong moment. The goal isn't a shorter form — it's a member who trusts the product enough to come back." />
+    <div class="mt-10 grid gap-6 lg:grid-cols-2">
+      <div class="rounded-2xl border border-line bg-white/60 p-7">
+        <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-faint">Friction-first</p>
+        <ul class="mt-4 flex flex-col gap-3 text-[14.5px] leading-relaxed text-ink-soft">
+          <li>Generic errors that don't say what to fix</li>
+          <li>One rigid flow regardless of how the member signed up</li>
+          <li>Recovery only reachable through a support call</li>
+        </ul>
+      </div>
+      <div class="rounded-2xl border border-accent/25 bg-accent-faint p-7">
+        <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-accent">Trust-first</p>
+        <ul class="mt-4 flex flex-col gap-3 text-[14.5px] leading-relaxed text-ink">
+          <li>Identifier-first routing to the right method</li>
+          <li>Actionable, specific error and recovery guidance</li>
+          <li>Passkey enrollment offered right when it matters most</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-content border-b border-line px-6 py-20 lg:px-8">
+    <SectionHeader eyebrow="Reality check" title="Passkeys without the hype" description="Passkeys are a genuine improvement, not a silver bullet. Treated as a habit to build rather than a switch to flip, they earn adoption instead of demanding it." />
+    <div class="mt-10 grid gap-6 lg:grid-cols-3">
+      <div class="rounded-2xl border border-line p-6">
+        <p class="text-[14.5px] leading-relaxed text-ink-soft">They remove phishing risk by design — but only once enough members have actually enrolled.</p>
+      </div>
+      <div class="rounded-2xl border border-line p-6">
+        <p class="text-[14.5px] leading-relaxed text-ink-soft">Forcing enrollment at signup backfires. Offering it after a win — a login, a recovery — doesn't.</p>
+      </div>
+      <div class="rounded-2xl border border-line p-6">
+        <p class="text-[14.5px] leading-relaxed text-ink-soft">A visible fallback still has to exist. Passwordless-first beats passwordless-only, every time.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-content px-6 py-20 lg:px-8">
+    <SectionHeader eyebrow="For every discipline" title="A playbook for product, UX, security and architecture" description="Four different teams, one shared reference for how authentication decisions get made." />
+    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {audiences.map((a) => (
+        <a href={a.href} class="group flex flex-col justify-between rounded-2xl border border-line bg-white/60 p-6 hover:border-accent/40 hover:bg-white">
+          <div>
+            <h3 class="text-lg font-semibold tracking-tight text-ink">{a.title}</h3>
+            <p class="mt-2.5 text-[14px] leading-relaxed text-ink-soft">{a.body}</p>
+          </div>
+          <span class="mt-6 inline-flex items-center gap-1.5 text-[13px] font-medium text-accent">
+            Explore <span class="transition-transform group-hover:translate-x-0.5">&rarr;</span>
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>

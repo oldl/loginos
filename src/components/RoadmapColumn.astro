@@ -1,0 +1,27 @@
+---
+export interface Props {
+  heading: string;
+  description: string;
+  items: string[];
+  tone?: 'active' | 'next' | 'later';
+}
+const { heading, description, items, tone = 'next' } = Astro.props;
+const dotStyles: Record<string, string> = {
+  active: 'bg-accent',
+  next: 'bg-ink-soft',
+  later: 'bg-ink-faint',
+};
+---
+
+<div class="flex flex-col rounded-2xl border border-line bg-white/60 p-7">
+  <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-faint">{heading}</p>
+  <p class="mt-2 text-[14px] leading-relaxed text-ink-soft">{description}</p>
+  <ul class="mt-6 flex flex-col gap-3">
+    {items.map((item) => (
+      <li class="flex items-start gap-3 border-t border-line pt-3 first:border-none first:pt-0">
+        <span class:list={['mt-2 h-1.5 w-1.5 shrink-0 rounded-full', dotStyles[tone]]}></span>
+        <span class="text-[14.5px] leading-relaxed text-ink">{item}</span>
+      </li>
+    ))}
+  </ul>
+</div>

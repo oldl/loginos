@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+
+export async function getStaticPaths() {
+  const items = await getCollection('patterns');
+  return items.map((item) => ({ params: { slug: item.slug }, props: { item } }));
+}
+
+const { item } = Astro.props;
+const { Content } = await item.render();
+---
+
+<BaseLayout title={item.data.title} description={item.data.problem}>
+  <Header />
+  <article class="mx-auto max-w-content px-6 py-16 lg:px-8 lg:py-20">
+    <a href="/patterns" class="text-[13.5px] font-medium text-ink-faint hover:text-accent">&larr; Patterns</a>
+    <div class="mt-8">
+      <SectionHeader
+        eyebrow={`Pattern ${String(item.data.order).padStart(2, '0')}`}
+        title={item.data.title}
+        description={item.data.recommendation}
+      />
+    </div>
+
+    <div class="mt-10 flex flex-wrap gap-2.5">
+      {item.data.tags.map((tag) => (
+        <span class="rounded-full border border-line bg-paper-soft px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wide text-ink-soft">
+          {tag}
+        </span>
+      ))}
+    </div>
+
+    <div class="mt-10 grid gap-5 lg:grid-cols-2">
+      <section class="rounded-2xl border border-line bg-white/60 p-7">
+        <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-faint">Problem</p>
+        <p class="mt-3 text-[15px] leading-relaxed text-ink-soft">{item.data.problem}</p>
+      </section>
+      <section class="rounded-2xl border border-accent/25 bg-accent-faint p-7">
+        <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-accent">Recommendation</p>
+        <p class="mt-3 text-[15px] leading-relaxed text-ink">{item.data.recommendation}</p>
+      </section>
+      <section class="rounded-2xl border border-line bg-white/60 p-7">
+        <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-faint">UX impact</p>
+        <p class="mt-3 text-[15px] leading-relaxed text-ink-soft">{item.data.uxImpact}</p>
+      </section>
+      <section class="rounded-2xl border border-line bg-white/60 p-7">
+        <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-faint">Security impact</p>
+        <p class="mt-3 text-[15px] leading-relaxed text-ink-soft">{item.data.securityImpact}</p>
+      </section>
+    </div>
+
+    <section class="mt-10 rounded-2xl border border-line bg-white/60 p-7">
+      <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-faint">Implementation notes</p>
+      <p class="mt-3 text-[15px] leading-relaxed text-ink-soft">{item.data.implementationNotes}</p>
+    </section>
+
+    <div class="prose prose-neutral mt-12 max-w-none">
+      <Content />
+    </div>
+  </article>
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,18 @@
+---
+export interface Props {
+  label: string;
+  score: number;
+  max?: number;
+}
+const { label, score, max = 5 } = Astro.props;
+const segments = Array.from({ length: max }, (_, i) => i < score);
+---
+
+<div class="flex items-center justify-between gap-4">
+  <span class="text-[13px] text-ink-soft">{label}</span>
+  <div class="flex items-center gap-1">
+    {segments.map((filled) => (
+      <span class:list={['h-1.5 w-4 rounded-full', filled ? 'bg-accent' : 'bg-line']}></span>
+    ))}
+  </div>
+</div>

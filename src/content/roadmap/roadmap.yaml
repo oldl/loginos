@@ -1,0 +1,16 @@
+now:
+  - "Harmonize password rules"
+  - "Improve recovery UX"
+  - "Clarify error messages"
+  - "Monitor login funnel"
+  - "Document login flows"
+next:
+  - "Add passkey opt-in"
+  - "Create login methods screen"
+  - "Propose passkey after recovery"
+  - "Improve mobile login continuity"
+later:
+  - "Passwordless-first experience"
+  - "Contextual login"
+  - "Device trust"
+  - "Progressive reduction of password dependency"

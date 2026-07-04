@@ -1,0 +1,35 @@
+---
+import ScoreBadge from './ScoreBadge.astro';
+
+export interface Props {
+  company: string;
+  href: string;
+  whatTheyDoWell: string;
+  whyItWorks: string;
+  whatToLearn: string;
+  uxPattern: string;
+  scores: { frictionReduction: number; trustSignaling: number; recoveryResilience: number };
+}
+const { company, href, whatTheyDoWell, whyItWorks, whatToLearn, uxPattern, scores } = Astro.props;
+---
+
+<article class="flex flex-col justify-between rounded-2xl border border-line bg-white/60 p-7">
+  <div>
+    <div class="flex items-center justify-between gap-3">
+      <h3 class="text-xl font-semibold tracking-tight text-ink">
+        <a href={href} class="hover:text-accent">{company}</a>
+      </h3>
+      <span class="rounded-full border border-line bg-paper-soft px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wide text-ink-soft">{uxPattern}</span>
+    </div>
+
+    <p class="mt-4 text-[14.5px] leading-relaxed text-ink-soft"><span class="font-medium text-ink">What they do well &mdash;</span> {whatTheyDoWell}</p>
+    <p class="mt-3 text-[14.5px] leading-relaxed text-ink-soft"><span class="font-medium text-ink">Why it works &mdash;</span> {whyItWorks}</p>
+    <p class="mt-3 text-[14.5px] leading-relaxed text-ink-soft"><span class="font-medium text-accent">What to learn &mdash;</span> {whatToLearn}</p>
+  </div>
+
+  <div class="mt-6 flex flex-col gap-2.5 border-t border-line pt-5">
+    <ScoreBadge label="Friction reduction" score={scores.frictionReduction} />
+    <ScoreBadge label="Trust signaling" score={scores.trustSignaling} />
+    <ScoreBadge label="Recovery resilience" score={scores.recoveryResilience} />
+  </div>
+</article>

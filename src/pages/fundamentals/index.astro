@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import Card from '../../components/Card.astro';
+
+const items = (await getCollection('fundamentals')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title="Fundamentals" description="The core building blocks of modern authentication: passwords, MFA, passkeys, sessions, recovery, identity proofing and delegated access.">
+  <Header />
+  <section class="mx-auto max-w-content px-6 py-16 lg:px-8 lg:py-20">
+    <SectionHeader
+      eyebrow="Foundations"
+      title="Fundamentals"
+      description="The building blocks every login decision rests on — read these first before diving into patterns."
+    />
+    <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {items.map((item) => (
+        <Card
+          index={item.data.order}
+          title={item.data.title}
+          description={item.data.summary}
+          href={`/fundamentals/${item.slug}`}
+        />
+      ))}
+    </div>
+  </section>
+  <Footer />
+</BaseLayout>

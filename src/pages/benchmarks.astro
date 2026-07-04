@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import BenchmarkCard from '../components/BenchmarkCard.astro';
+
+const items = (await getCollection('benchmarks')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title="Benchmarks" description="What Amazon, Google, Apple, Microsoft and Revolut do well in login and authentication, and what Partenamut can learn from each.">
+  <Header />
+  <section class="mx-auto max-w-content px-6 py-16 lg:px-8 lg:py-20">
+    <SectionHeader
+      eyebrow="Learn from the field"
+      title="Benchmarks"
+      description="Five products with authentication experiences worth studying — and the specific UX pattern each one demonstrates."
+    />
+    <div class="mt-12 grid gap-6 lg:grid-cols-2">
+      {items.map((item) => (
+        <BenchmarkCard
+          company={item.data.company}
+          href={`/benchmarks/${item.slug}`}
+          whatTheyDoWell={item.data.whatTheyDoWell}
+          whyItWorks={item.data.whyItWorks}
+          whatToLearn={item.data.whatToLearn}
+          uxPattern={item.data.uxPattern}
+          scores={item.data.scores}
+        />
+      ))}
+    </div>
+  </section>
+  <Footer />
+</BaseLayout>
