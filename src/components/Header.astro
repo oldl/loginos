@@ -6,6 +6,7 @@ const nav = [
   { label: 'Case Studies', href: '/case-studies' },
   { label: 'Decision Log', href: '/decision-log' },
   { label: 'Roadmap', href: '/roadmap' },
+  { label: 'News', href: '/news' },
 ];
 const path = Astro.url.pathname;
 const isActive = (href: string) => path === href || (href !== '/' && path.startsWith(href));

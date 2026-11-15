@@ -74,7 +74,17 @@ const roadmap = defineCollection({
   }),
 });
 
+const news = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),
+    summary: z.string(),
+  }),
+});
+
 export const collections = {
+  news,
   fundamentals,
   patterns,
   benchmarks,

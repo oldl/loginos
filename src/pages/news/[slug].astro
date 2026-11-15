@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+  return (await getCollection('news')).map((item) => ({
+    params: { slug: item.slug },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+const { Content } = await item.render();
+const date = item.data.date.toISOString().slice(0, 10);
+---
+
+<BaseLayout title={item.data.title} description={item.data.summary}>
+  <Header />
+  <main class="mx-auto max-w-content px-6 py-16 lg:px-8 lg:py-20">
+    <article>
+      <a href="/news/" class="text-sm font-medium text-ink-soft hover:text-accent">&larr; News</a>
+      <time datetime={date} class="mt-6 block font-mono text-sm text-ink-soft">{date}</time>
+      <h1 class="mt-3 text-4xl font-semibold tracking-tight text-ink lg:text-5xl">{item.data.title}</h1>
+      <p class="mt-5 max-w-2xl text-lg text-ink-soft">{item.data.summary}</p>
+      <div class="prose prose-neutral mt-10"><Content /></div>
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>
