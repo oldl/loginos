@@ -2,7 +2,7 @@
 
 An editorial playbook about modern authentication, login UX, passkeys, signup, recovery, CSAM/itsme and identity trust — built to help product, UX, security and architecture teams align on login decisions.
 
-Live at **loginos.blog**.
+Production domain: **404club.blog**.
 
 ## Stack
 

@@ -4,8 +4,8 @@ backend:
 
 local_backend: true
 
-site_url: https://loginos.blog
-display_url: https://loginos.blog
+site_url: https://404club.blog
+display_url: https://404club.blog
 logo_url: /favicon.svg
 
 media_folder: "public/images/uploads"

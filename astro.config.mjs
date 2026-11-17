@@ -4,7 +4,7 @@ import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://loginos.blog',
+  site: 'https://404club.blog',
   integrations: [
     tailwind({
       applyBaseStyles: false,
