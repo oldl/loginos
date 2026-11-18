@@ -3,21 +3,26 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import Card from '../../components/Card.astro';
-
 const news = (await getCollection('news')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const [featured, ...articles] = news;
+const formatDate = (date: Date) => new Intl.DateTimeFormat('fr-BE', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC' }).format(date);
 ---
-
-<BaseLayout title="News" description="Updates from the LoginOS playbook.">
+<BaseLayout title="News" description="Une veille sur l’authentification, la signature électronique et l’identité numérique, avec un regard produit et UX.">
   <Header />
-  <main class="mx-auto max-w-content px-6 py-16 lg:px-8 lg:py-20">
-    <h1 class="text-4xl font-semibold tracking-tight text-ink lg:text-5xl">News</h1>
-    <p class="mt-4 text-lg text-ink-soft">Updates from the LoginOS playbook.</p>
-    <div class="mt-10 grid gap-5 sm:grid-cols-2">
-      {news.map(({ data, slug }) => (
-        <Card title={data.title} description={data.summary} href={`/news/${slug}/`} />
-      ))}
-    </div>
+  <main class="swiss-home mx-auto max-w-content px-6 lg:px-8" lang="fr">
+    <section class="swiss-masthead" aria-labelledby="page-title">
+      <div class="swiss-kicker"><span>Identité numérique & culture produit</span><span>Une veille par 404Club</span></div>
+      <h1 id="page-title">Less friction.<br /><span>More connections.</span></h1>
+      <div class="swiss-intro"><p>S’identifier. Se connecter. Signer.<br />Des usages qui évoluent.</p><p>Une veille sur l’authentification, la signature électronique et l’identité numérique, avec un regard produit et UX.</p></div>
+    </section>
+    {featured && <section class="swiss-feature" aria-labelledby="featured-title">
+      <div class="swiss-feature-label"><span class="swiss-label">À la une</span><time datetime={featured.data.date.toISOString()}>{formatDate(featured.data.date)}</time></div>
+      <a class="swiss-feature-link" href={`/news/${featured.slug}/`}><h2 id="featured-title">{featured.data.title}</h2><p>{featured.data.summary}</p><span class="swiss-read">Lire l’article</span></a>
+    </section>}
+    <section class="swiss-feed" aria-labelledby="feed-title">
+      <div class="swiss-feed-heading"><h2 id="feed-title">Le fil.</h2><span class="swiss-label">Les dernières publications</span></div>
+      {articles.map(({ data, slug }) => <a class="swiss-news-row" href={`/news/${slug}/`}><time datetime={data.date.toISOString()}>{formatDate(data.date)}</time><h3>{data.title}</h3><div><p>{data.summary}</p><span class="swiss-read">Lire l’article</span></div></a>)}
+    </section>
   </main>
   <Footer />
 </BaseLayout>

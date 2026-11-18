@@ -5,25 +5,25 @@ export default {
     extend: {
       colors: {
         paper: {
-          DEFAULT: '#F8F7F3',
-          soft: '#F1EFE9',
-          dim: '#EAE7DF',
+          DEFAULT: '#FFFFFF',
+          soft: '#F5F5F5',
+          dim: '#EBEBEB',
         },
         ink: {
-          DEFAULT: '#15161A',
-          soft: '#42444C',
-          faint: '#82848C',
+          DEFAULT: '#111111',
+          soft: '#505050',
+          faint: '#686868',
         },
         accent: {
-          DEFAULT: '#3C31C7',
-          dark: '#2C2494',
-          light: '#ECEAFB',
-          faint: '#F4F3FC',
+          DEFAULT: '#1646F5',
+          dark: '#1036C4',
+          light: '#E8EDFF',
+          faint: '#F3F5FF',
         },
-        line: '#E1DFD8',
+        line: '#D8D8D8',
       },
       fontFamily: {
-        sans: ['"IBM Plex Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['Arial', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         mono: ['"IBM Plex Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       maxWidth: {
