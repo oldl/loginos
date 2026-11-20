@@ -5,13 +5,16 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 
 export async function getStaticPaths() {
-  return (await getCollection('news')).map((item) => ({
+  const news = (await getCollection('news')).sort((a, b) =>
+    a.data.date.getTime() - b.data.date.getTime() || a.slug.localeCompare(b.slug, 'fr')
+  );
+  return news.map((item, index) => ({
     params: { slug: item.slug },
-    props: { item },
+    props: { item, previous: news[index - 1], next: news[index + 1] },
   }));
 }
 
-const { item } = Astro.props;
+const { item, previous, next } = Astro.props;
 const { Content } = await item.render();
 const date = item.data.date.toISOString().slice(0, 10);
 ---
@@ -25,6 +28,22 @@ const date = item.data.date.toISOString().slice(0, 10);
       <h1 class="mt-3 text-4xl font-semibold tracking-tight text-ink lg:text-5xl">{item.data.title}</h1>
       <p class="mt-5 max-w-2xl text-lg text-ink-soft">{item.data.summary}</p>
       <div class="prose prose-neutral mt-10"><Content /></div>
+      {(previous || next) && (
+        <nav aria-label="Navigation entre les articles" class="mt-16 grid gap-6 border-t border-line pt-8 sm:grid-cols-2">
+          {previous && (
+            <a href={`/news/${previous.slug}/`} rel="prev" class="group rounded-sm p-4 text-accent transition-colors hover:bg-accent-light focus-visible:bg-accent-light motion-reduce:transition-none">
+              <span class="block text-sm font-medium"><span aria-hidden="true">← </span>Article précédent</span>
+              <span class="mt-3 block text-xl font-semibold leading-snug">{previous.data.title}</span>
+            </a>
+          )}
+          {next && (
+            <a href={`/news/${next.slug}/`} rel="next" class="rounded-sm p-4 text-right text-accent transition-colors hover:bg-accent-light focus-visible:bg-accent-light motion-reduce:transition-none sm:col-start-2">
+              <span class="block text-sm font-medium">Article suivant<span aria-hidden="true"> →</span></span>
+              <span class="mt-3 block text-xl font-semibold leading-snug">{next.data.title}</span>
+            </a>
+          )}
+        </nav>
+      )}
     </article>
   </main>
   <Footer />
