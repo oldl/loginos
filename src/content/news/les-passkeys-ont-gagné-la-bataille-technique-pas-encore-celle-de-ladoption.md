@@ -14,4 +14,6 @@ Elles sont également près de trois fois plus rapides que les connexions sans p
 
 Tous les participants qui mesurent les attaques de phishing ont constaté une diminution du nombre d’attaques réussies depuis le déploiement des passkeys. De même, tous ceux ayant communiqué des données sur les économies réalisées ont signalé une réduction des coûts liés aux codes à usage unique envoyés par SMS (SMS OTP).
 
+![](/images/uploads/screenshot-2026-11-20-at-06.24.54.png)
+
 Le rapport complet : <https://fidoalliance.org/wp-content/uploads/2026/10/Passkey-Index-October-2026.pdf>
