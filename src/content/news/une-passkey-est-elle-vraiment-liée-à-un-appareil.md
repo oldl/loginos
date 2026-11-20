@@ -65,8 +65,5 @@ Mais elles ne rendent pas l'authentification totalement indépendante de son env
 * [FIDO Alliance — Passkeys](https://fidoalliance.org/passkeys/)
 * [Google Developers — Passkeys](https://developers.google.com/identity/passkeys)
 * [Apple Developer — Passkeys](https://developer.apple.com/passkeys/)
-* [FIDO Alliance — Passkey Index 2026 (rapport complet)](https://fidoalliance.org/wp-content/uploads/2026/10/Passkey-Index-October-2026.pdf)
-
-Ajoute un résumé pour les équipes produitClarifie les trois notions clés
 
 ![](/images/uploads/download.svg)
