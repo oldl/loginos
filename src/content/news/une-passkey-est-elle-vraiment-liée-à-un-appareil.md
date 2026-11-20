@@ -5,8 +5,7 @@ summary: "Les passkeys sont souvent présentées comme des clés numériques
   associées à un smartphone ou à un ordinateur. En réalité, elles ne sont pas
   nécessairement liées à un appareil : certaines peuvent être synchronisées
   entre plusieurs équipements, tandis que d'autres restent exclusivement
-  stockées sur un authentificateur physique. Une distinction essentielle pour
-  comprendre leur fonctionnement et concevoir de bons parcours de connexion."
+  stockées sur un authentificateur physique."
 ---
 ## Deux types de passkeys
 
