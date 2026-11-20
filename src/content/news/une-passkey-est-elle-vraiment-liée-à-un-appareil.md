@@ -8,12 +8,6 @@ summary: "Les passkeys sont souvent présentées comme des clés numériques
   stockées sur un authentificateur physique. Une distinction essentielle pour
   comprendre leur fonctionnement et concevoir de bons parcours de connexion."
 ---
-
-
-# Une passkey est-elle vraiment liée à un appareil ?
-
-**Les passkeys sont souvent présentées comme des clés numériques associées à un smartphone ou à un ordinateur. En réalité, elles ne sont pas nécessairement liées à un appareil : certaines peuvent être synchronisées entre plusieurs équipements, tandis que d'autres restent exclusivement stockées sur un authentificateur physique. Une distinction essentielle pour comprendre leur fonctionnement et concevoir de bons parcours de connexion.**
-
 ## Deux types de passkeys
 
 Une passkey repose sur la cryptographie asymétrique : une clé publique est enregistrée par le service en ligne, tandis qu'une clé privée est conservée par un authentificateur. Lors de la connexion, ce dernier utilise la clé privée pour prouver l'identité de l'utilisateur, sans transmettre de mot de passe.
