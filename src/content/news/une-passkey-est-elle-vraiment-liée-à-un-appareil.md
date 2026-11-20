@@ -5,8 +5,7 @@ summary: "Les passkeys sont souvent présentées comme des clés numériques
   associées à un smartphone ou à un ordinateur. En réalité, elles ne sont pas
   nécessairement liées à un appareil : certaines peuvent être synchronisées
   entre plusieurs équipements, tandis que d'autres restent exclusivement
-  stockées sur un authentificateur physique. Une distinction essentielle pour
-  comprendre leur fonctionnement et concevoir de bons parcours de connexion."
+  stockées sur un authentificateur physique."
 ---
 ## Deux types de passkeys
 
@@ -65,8 +64,5 @@ Mais elles ne rendent pas l'authentification totalement indépendante de son env
 * [FIDO Alliance — Passkeys](https://fidoalliance.org/passkeys/)
 * [Google Developers — Passkeys](https://developers.google.com/identity/passkeys)
 * [Apple Developer — Passkeys](https://developer.apple.com/passkeys/)
-* [FIDO Alliance — Passkey Index 2026 (rapport complet)](https://fidoalliance.org/wp-content/uploads/2026/10/Passkey-Index-October-2026.pdf)
-
-Ajoute un résumé pour les équipes produitClarifie les trois notions clés
 
 ![](/images/uploads/download.svg)
